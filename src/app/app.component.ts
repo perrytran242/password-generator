@@ -1,5 +1,5 @@
-import { Component, SimpleChange } from '@angular/core';
-import { OnInit, OnChanges } from '@angular/core';
+import { Component, SimpleChange, ViewChild } from '@angular/core';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,19 +11,30 @@ export class AppComponent implements OnInit {
   password = '';
   randomStr: string;
   useLetters: boolean;
+  useNumbers: boolean;
+  useSymbols: boolean;
 
   ngOnInit() {
-    this.randomStr = String.fromCharCode(65);
+
   }
 
   get letters() {
     return this.useLetters;
   }
 
+  get numbers() {
+    return this.useNumbers;
+  }
+
+  get symbols() {
+    return this.useSymbols;
+  }
+
   onGeneratePassword() {
+    this.password = '';
 
     if (this.letters) {
-      this.passwordLength = parseInt(this.passwordLength)
+      this.passwordLength = parseInt(this.passwordLength);
       for (let i = 0; i < this.passwordLength; i++) {
         const randomNum = this.getRandomInt(65, 122);
         this.password += String.fromCharCode(randomNum);
