@@ -33,24 +33,26 @@ export class AppComponent implements OnInit {
     this.password = '';
     const parsedValue = parseInt(this.passwordLength);
 
-    if ( !isNaN(parsedValue)) {
-      this.length = parsedValue;
-    }
+    const letters = 'ABCDEFGHIJKLMNOPQRSTVUWXYZabcdefghijlmnkopqrstuvwxyz';
     const numbers = '1234567890';
-    const letters = 'abcdefghijlmnkopqrstuvwxyz';
     const symbols = '!@#$%^&*()-=_+';
 
     let validChars = '';
 
-
-    if (this.letters && this.numbers && this.symbols) {
-      for (let i = 0; i < this.length; i++) {
-        validChars = numbers + letters + symbols;
-        const randomNum = this.getRandomInt(0, validChars.length);
-        this.password += validChars[randomNum];
-      }
+    if (this.letters) {
+      validChars += letters;
     }
-    console.log(this.password);
+    if (this.numbers) {
+      validChars += numbers;
+    }
+    if (this.symbols) {
+      validChars += symbols;
+    }
+
+    for (let i = 0; i < parsedValue; i++) {
+      const index = this.getRandomInt(0, validChars.length);
+      this.password += validChars[index];
+    }
   }
 
   getRandomInt(min, max) {

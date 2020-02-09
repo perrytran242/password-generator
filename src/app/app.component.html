@@ -43,7 +43,7 @@
   <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      <div (click)="onGeneratePassword()" class="w-100 btn btn-primary">Generate</div>
+      <button [disabled]="!this.passwordLength" (click)="onGeneratePassword()" class="w-100 btn btn-primary">Generate</button>
     </div>
   </div>
 
