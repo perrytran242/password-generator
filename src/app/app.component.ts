@@ -7,16 +7,15 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  passwordLength: any;
-  password = '';
+  passwordLength: string;
+  length: any;
   randomStr: string;
-  useLetters: boolean;
-  useNumbers: boolean;
-  useSymbols: boolean;
+  useLetters = false;
+  useNumbers = false;
+  useSymbols = false;
+  password = '';
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   get letters() {
     return this.useLetters;
@@ -32,14 +31,26 @@ export class AppComponent implements OnInit {
 
   onGeneratePassword() {
     this.password = '';
+    const parsedValue = parseInt(this.passwordLength);
 
-    if (this.letters) {
-      this.passwordLength = parseInt(this.passwordLength);
-      for (let i = 0; i < this.passwordLength; i++) {
-        const randomNum = this.getRandomInt(65, 122);
-        this.password += String.fromCharCode(randomNum);
+    if ( !isNaN(parsedValue)) {
+      this.length = parsedValue;
+    }
+    const numbers = '1234567890';
+    const letters = 'abcdefghijlmnkopqrstuvwxyz';
+    const symbols = '!@#$%^&*()-=_+';
+
+    let validChars = '';
+
+
+    if (this.letters && this.numbers && this.symbols) {
+      for (let i = 0; i < this.length; i++) {
+        validChars = numbers + letters + symbols;
+        const randomNum = this.getRandomInt(0, validChars.length);
+        this.password += validChars[randomNum];
       }
     }
+    console.log(this.password);
   }
 
   getRandomInt(min, max) {

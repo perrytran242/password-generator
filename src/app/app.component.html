@@ -34,7 +34,7 @@
     <div class="col-md-4"></div>
     <div class="col-md-4">
       <div class="form-check">
-        <input type="checkbox" id="symbols" class="form-check-input">
+        <input (change)="useSymbols = !useSymbols" type="checkbox" id="symbols" class="form-check-input">
         <label class="form-check-label" for="symbols">Use Symbols</label>
       </div>
     </div>
